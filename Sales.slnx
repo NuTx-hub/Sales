@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../Data Layer/Data Layer.csproj" Id="2cc4fb3e-951d-46b0-adad-e4b44f4f154a" />
+  <Project Path="../Entity Layer/Entity Layer.csproj" Id="e7583efa-59e5-490d-ab01-9a6cd6444ea8" />
+  <Project Path="../Logic Layer/Logic Layer.csproj" Id="65f1b0c3-5487-470a-af14-111d29f715e7" />
+  <Project Path="Presentation Layer.csproj" Id="1e84861f-0cd4-4ddb-8c3d-9b7ca82a3b35" />
+</Solution>
