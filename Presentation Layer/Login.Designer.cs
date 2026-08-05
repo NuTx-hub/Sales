@@ -1,6 +1,6 @@
 ﻿namespace Presentation_Layer
 {
-    partial class Login
+    partial class frLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -29,36 +29,52 @@
         private void InitializeComponent()
         {
             pSelectUser = new Panel();
+            btnAdmin = new RoundButton();
             btnClient = new RoundButton();
             pSelectUser.SuspendLayout();
             SuspendLayout();
             // 
             // pSelectUser
             // 
-            pSelectUser.BackColor = Color.FromArgb(241, 239, 232);
+            pSelectUser.BackColor = Color.FromArgb(248, 246, 239);
+            pSelectUser.Controls.Add(btnAdmin);
             pSelectUser.Controls.Add(btnClient);
             pSelectUser.Location = new Point(187, 162);
             pSelectUser.Name = "pSelectUser";
             pSelectUser.Size = new Size(350, 380);
             pSelectUser.TabIndex = 0;
             // 
+            // btnAdmin
+            // 
+            btnAdmin.BackColor = Color.Lime;
+            btnAdmin.Font = new Font("Segoe UI", 15F);
+            btnAdmin.Location = new Point(78, 237);
+            btnAdmin.Name = "btnAdmin";
+            btnAdmin.Size = new Size(198, 62);
+            btnAdmin.TabIndex = 1;
+            btnAdmin.Text = " Manager";
+            btnAdmin.UseVisualStyleBackColor = false;
+            // 
             // btnClient
             // 
-            btnClient.Location = new Point(103, 56);
+            btnClient.BackColor = Color.Lime;
+            btnClient.Font = new Font("Segoe UI", 15F);
+            btnClient.Location = new Point(78, 82);
             btnClient.Name = "btnClient";
-            btnClient.Size = new Size(159, 62);
+            btnClient.Size = new Size(198, 62);
             btnClient.TabIndex = 0;
-            btnClient.Text = "roundButton1";
-            btnClient.UseVisualStyleBackColor = true;
+            btnClient.Text = "Costumer";
+            btnClient.UseVisualStyleBackColor = false;
             // 
-            // Login
+            // frLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.FromArgb(241, 239, 232);
             ClientSize = new Size(729, 689);
             Controls.Add(pSelectUser);
-            Name = "Login";
+            Name = "frLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             Load += Login_Load;
             Resize += Login_Resize;
@@ -70,5 +86,6 @@
 
         private Panel pSelectUser;
         private RoundButton btnClient;
+        private RoundButton btnAdmin;
     }
 }
