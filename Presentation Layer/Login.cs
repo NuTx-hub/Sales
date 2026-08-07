@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -15,50 +16,65 @@ namespace Presentation_Layer
             InitializeComponent();
         }
 
-        private void CenterPanel(Panel p)
+        private void CenterButtons()
         {
-            p.Location = new Point((this.ClientSize.Width - p.Width) / 2,
-            (this.ClientSize.Height - p.Height) / 2);
+            //Center horizontally
+            btnAdmin.Left = (pSelectUser.ClientSize.Width - btnAdmin.Width) / 2;
+            btnClient.Left = (pSelectUser.ClientSize.Width - btnClient.Width) / 2;
+
+            //Center vertically
+            int spacing = 50;
+            int totalHeight = btnAdmin.Height + btnClient.Height + spacing;
+            int startY = (pSelectUser.ClientSize.Height - totalHeight) / 2;
+
+            btnClient.Top = startY;
+            btnAdmin.Top = startY + spacing + btnAdmin.Height;
         }
 
-        private void CenterButtons(params Button [] btn) // NOT FINISHED YET
+        private void ModifyPanel()
         {
-            //Centers all buttons in the panel. Only the x coordinate
-            for (int i = 0; i < btn.Length; i++)
-            {
-                btn[i].Location = new Point(btn[i].Left + Math.Abs(pSelectUser.Left - btn[i].Left));
-                if(i >= 1)
-                
-
-            }
+            //Design panel
+            PersonalizePanel();
+            CenterButtons();
+            CenterPanel();
         }
-        private void PersonalizePanel(Panel p)
+
+        //Centers any control into another one. 
+        public void CenterPanel()
+        {
+            pSelectUser.Left = (this.ClientSize.Width - pSelectUser.Width) / 2;
+            pSelectUser.Top = (this.ClientSize.Height - pSelectUser.Height) / 2;
+        }
+
+        private void PersonalizePanel()
         {
             //Set default background color and size of the panel
-            p.BackColor = Color.FromArgb(248, 246, 239);
+            pSelectUser.BackColor = Color.FromArgb(248, 246, 239);
             int width = Convert.ToInt32(this.Width * 0.7);
             int height = Convert.ToInt32(this.Height * 0.8);
-            p.Size = new Size(width, height);
+            pSelectUser.Size = new Size(width, height);
 
-            p.BorderStyle = BorderStyle.None;
+            pSelectUser.BorderStyle = BorderStyle.None;
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-            PersonalizePanel(pSelectUser);
-            CenterPanel(pSelectUser);
-            CenterButtons(btnAdmin, btnClient);
+            ModifyPanel();
+            btnCustomerUndo.FlatStyle = FlatStyle.Flat;
+            btnCustomerUndo.FlatAppearance.BorderSize = 0;
+            btnAdminUndo.FlatStyle = FlatStyle.Flat;
+            btnAdminUndo.FlatAppearance.BorderSize = 0;
         }
 
         private void Login_Resize(object sender, EventArgs e)
         {
             //Rezise the panel when the form is resized
-            int width = Convert.ToInt32(this.Width*0.7);
-            int height = Convert.ToInt32(this.Height*0.8);
+            int width = Convert.ToInt32(this.Width * 0.7);
+            int height = Convert.ToInt32(this.Height * 0.8);
 
-            if(width < 350 || height < 380)
+            if (width < 250 || height < 280)
             {
-                pSelectUser.Width = 350; pSelectUser.Height = 380;
+                pSelectUser.Width = 250; pSelectUser.Height = 280;
             }
             else
             {
@@ -66,8 +82,52 @@ namespace Presentation_Layer
             }
 
             //Center the panel
-            CenterPanel(pSelectUser);
-            CenterButtons(btnAdmin, btnClient);
+            ModifyPanel();
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            pSelectUser.Visible = false;
+            pClientLogin.Visible = false;
+            pManagerLogin.Visible = true;
+        }
+
+        private void btnClient_Click(object sender, EventArgs e)
+        {
+            pSelectUser.Visible = false;
+            pManagerLogin.Visible = false;
+            pClientLogin.Visible = true;
+
+        }
+
+        private void txtAdminCi_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pClientLogin_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pManagerLogin_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
