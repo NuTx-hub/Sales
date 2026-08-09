@@ -6,14 +6,14 @@ namespace Entity_Layer
 {
     public class Admin
     {
-        private int idEmployee = 0; //It will be assigned in the database.
-        private int ci = 0;
+        private int idAdmin = 0; //It will be assigned in the database.
+        private int dni = 0;
         private string name = string.Empty;
         private string lastname = string.Empty;
         private string password = string.Empty;
 
-        public int IdEmployee { get { return idEmployee; } set { idEmployee = value; } }
-        public int Ci { get { return ci; } set { ci = value; } }
+        public int IdAdmin{ get { return idAdmin; } set { idAdmin = value; } }
+        public int DNI { get { return dni; } set { dni = value; } }
         public string Name { get { return name; } set { name = value; } }
         public string Lastname { get { return lastname; } set { lastname = value; } }
         public string Password { get { return password;  } set { password = value; }  }
@@ -21,6 +21,13 @@ namespace Entity_Layer
         public Admin()
         {
 
+        }
+        public Admin(int dni, string name, string lastname, string password)
+        {
+            this.DNI = dni;
+            this.Name = name;
+            this.Lastname = lastname;
+            this.Password = password;
         }
     }
 }

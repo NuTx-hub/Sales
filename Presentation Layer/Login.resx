@@ -121,7 +121,7 @@
   <data name="btnAdminUndo.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHESURBVEhLtdW9
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHESURBVEhLtdW9
         axRRFAXwH8YgytZKGoOFIIKVoGJhYafYWNjaCNpYC9qIlb2Nlf+AlbBEREQhi1tKUviBCaKE+BFNZAnB
         ZOPMyHtOdDNvdZfNZg63mPvOvWfue/e+URSF7bTEMWxLHJsWGUcLOS5W1/uxxPFngSNGZF6ra2uI1JTX
         yxJHdHLKLrkFzxQRy0MTwHk1bcuaZfKAH0MRwGV7rVgz1ZE8ILM7nkMgVW0VD3C8mnyTAG7ab1HmTSX5
@@ -132,10 +132,10 @@
         7MZtE9hhTzyD5rYIBMP9clvvJIvDtl84dBUs5saTLwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btnCustomerUndo.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnClientUndo.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHESURBVEhLtdW9
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHESURBVEhLtdW9
         axRRFAXwH8YgytZKGoOFIIKVoGJhYafYWNjaCNpYC9qIlb2Nlf+AlbBEREQhi1tKUviBCaKE+BFNZAnB
         ZOPMyHtOdDNvdZfNZg63mPvOvWfue/e+URSF7bTEMWxLHJsWGUcLOS5W1/uxxPFngSNGZF6ra2uI1JTX
         yxJHdHLKLrkFzxQRy0MTwHk1bcuaZfKAH0MRwGV7rVgz1ZE8ILM7nkMgVW0VD3C8mnyTAG7ab1HmTSX5
@@ -149,7 +149,7 @@
   <data name="btnRegisterAdminUndo.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHESURBVEhLtdW9
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHESURBVEhLtdW9
         axRRFAXwH8YgytZKGoOFIIKVoGJhYafYWNjaCNpYC9qIlb2Nlf+AlbBEREQhi1tKUviBCaKE+BFNZAnB
         ZOPMyHtOdDNvdZfNZg63mPvOvWfue/e+URSF7bTEMWxLHJsWGUcLOS5W1/uxxPFngSNGZF6ra2uI1JTX
         yxJHdHLKLrkFzxQRy0MTwHk1bcuaZfKAH0MRwGV7rVgz1ZE8ILM7nkMgVW0VD3C8mnyTAG7ab1HmTSX5
@@ -163,7 +163,7 @@
   <data name="btnRegisterClientUndo.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHESURBVEhLtdW9
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHESURBVEhLtdW9
         axRRFAXwH8YgytZKGoOFIIKVoGJhYafYWNjaCNpYC9qIlb2Nlf+AlbBEREQhi1tKUviBCaKE+BFNZAnB
         ZOPMyHtOdDNvdZfNZg63mPvOvWfue/e+URSF7bTEMWxLHJsWGUcLOS5W1/uxxPFngSNGZF6ra2uI1JTX
         yxJHdHLKLrkFzxQRy0MTwHk1bcuaZfKAH0MRwGV7rVgz1ZE8ILM7nkMgVW0VD3C8mnyTAG7ab1HmTSX5
