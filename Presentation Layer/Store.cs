@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Presentation_Layer
 {
-    public partial class Store : Form
+    public partial class frStore : Form
     {
-        public Store()
+        public frStore()
         {
             InitializeComponent();
         }

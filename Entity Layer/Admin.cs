@@ -22,6 +22,16 @@ namespace Entity_Layer
         {
 
         }
+
+        public Admin(int id, int dni, string name, string lastname, string password)
+        {
+            this.IdAdmin = id;
+            this.DNI = dni;
+            this.Name = name;
+            this.Lastname = lastname;
+            this.Password= password;
+        }
+
         public Admin(int dni, string name, string lastname, string password)
         {
             this.DNI = dni;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic_Layer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,15 +16,16 @@ namespace Presentation_Layer
         {
             InitializeComponent();
         }
+        LogicAdmin logicAdmin = new();
 
-        private void StyleLabels(params Label[] lblList)
+        private static void StyleLabels(params Label[] lblList)
         {
             foreach (Label lbl in lblList)
             {
                 lbl.Cursor = Cursors.Hand;
             }
         }
-        private void StyleButtons(params Button[] btnList)
+        private static void StyleButtons(params Button[] btnList)
         {
             foreach (Button btn in btnList)
             {
@@ -170,6 +172,38 @@ namespace Presentation_Layer
         {
             pLoginAdmin.Visible = false;
             pRegisterAdmin.Visible = true;
+        }
+
+        private void btnLoginAdmin_Click(object sender, EventArgs e)
+        {
+            int DNI = Convert.ToInt32(txtAdminDNI.Text) ;
+            string password = txtPassword.Text;
+
+            try
+            {
+                if(Validations.IsEmptyField(txtAdminDNI.Text, password))
+                {
+                    if(logicAdmin.IsAdmin(DNI, password))
+                    {
+                        //Keep the admin info into the List
+                        int id = logicAdmin.
+                        if(logicAdmin.SelectAdmin())
+                        LogicAdmin.adminList.Add()
+
+                        this.Hide();
+                        frStore frStore = new();
+                        frStore.Show(); 
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
         }
     }
 }

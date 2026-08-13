@@ -104,5 +104,74 @@ namespace Data_Layer
                 return count > 0;
             }
         }
+
+        public bool IsAdmin(int dni, string password)
+        {
+            SqlConnection conn = new(connectionString);
+            conn.Open();
+            string query = "SELECT CASE WHEN EXISTS (SELECT 1 FROM Products WHERE DNI = @dni  AND Password = @password) THEN 1 ELSE 0 END";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@dni", dni);
+            cmd.Parameters.AddWithValue("@password", password);
+
+            bool exists = (int)cmd.ExecuteScalar() == 1;
+            conn.Close();
+            return exists;
+        }
+
+        public int SelectIdAdmin(int dni)
+        {
+            SqlConnection conn = new(connectionString);
+            conn.Open();
+            string query = "SELECT 1 FROM Admin WHERE DNI = @dni";
+            SqlCommand cmd = new(query, conn);
+            {
+                cmd.Parameters.AddWithValue("@dni", dni);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    return id;
+                }
+                else return 0;
+            }
+        }
+
+        public Admin SelectAdmin(int idAdmin)
+        {
+            try
+            {
+                SqlConnection conn = new(connectionString);
+                string query = "SELECT * FROM Admin WHERE IdAdmin = @idAdmin";
+                conn.Open();
+                SqlCommand cmd = new(query, conn);
+                {
+                    cmd.Parameters.AddWithValue("@idAdmin", idAdmin);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        int dni = (int)reader.GetInt32(1);
+                        string name = reader.GetString(2);
+                        string lastname = reader.GetString(3);
+                        string password = reader.GetString(4);
+                        Admin admin = new(id, dni, name, lastname, password);
+
+                        return admin;
+                    }
+                    else return null;
+                }
+            }
+            catch (SqlException sqlExc)
+            {
+                throw new Exception("Database error. Try again.", sqlExc);
+            }
+            catch (Exception Exc)
+            {
+                throw new Exception("Database error. Try again.", Exc);
+            }
+        }
     }
 }

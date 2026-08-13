@@ -200,6 +200,7 @@
             btnLoginAdmin.TabIndex = 0;
             btnLoginAdmin.Text = "Log In";
             btnLoginAdmin.UseVisualStyleBackColor = false;
+            btnLoginAdmin.Click += btnLoginAdmin_Click;
             // 
             // pLoginClient
             // 

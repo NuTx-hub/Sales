@@ -9,6 +9,8 @@ namespace Logic_Layer
     //Class to create functions to validate data from the Admin entity.
     public class LogicAdmin
     {
+        public static List<Admin> adminList;
+
         readonly AdminRepository adminData = new();
         public bool LInsertAdmin(int dni, string name, string lastname, string password)
         {
@@ -27,10 +29,20 @@ namespace Logic_Layer
         }
 
         //Verify that the DNI it's in the database
-        public bool IsDNIAdmin(int dni)
+        public int GetId(int dni)
         {
-            AdminRepository adminData = new();
-            return adminData.IsDNI(dni);
+            return adminData.SelectIdAdmin(dni);
+        }
+
+        public Admin SelectAdmin(int idAdmin)
+        {
+            //It returns null if there isn't 
+            return adminData.SelectAdmin(idAdmin); 
+        }
+
+        public bool IsAdmin(int DNI, string password)
+        {
+            return adminData.IsAdmin(DNI, password);
         }
     }
 }
