@@ -20,11 +20,6 @@ namespace Presentation_Layer
         LogicAdmin logicAdmin = new();
         LogicClient logicClient = new();
 
-        private bool ValidateClient(params object[] args)
-        {
-            
-        }
-
         private static void StyleLabels(params Label[] lblList)
         {
             foreach (Label lbl in lblList)
@@ -170,15 +165,42 @@ namespace Presentation_Layer
                 string name = txtNameClient.Text;
                 string lastname = txtLastnameClient.Text;
                 string email = txtEmail.Text;
-                int dni = Convert.ToInt32(txtDNIClient.Text);
 
-                if()
+                if (Validations.IsNumber(txtDNIClient.Text) && Validations.IsString(name, lastname))
+                {
+                    int dni = Convert.ToInt32(txtDNIClient.Text);
 
+                    Client client = new(dni, name, lastname, email);
+                    ValidatorClient validateClient = new();
+                    var result = validateClient.Validate(client);
+
+                    if (!result.IsValid)
+                    {
+                        string errors = string.Join(Environment.NewLine, result.Errors);
+                        MessageBox.Show(errors, "Validation Errors", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        if (logicClient.LInsertClient(dni, name, lastname, email))
+                        {
+                            frStore store = new();
+                            store.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("There was an unknown error. Try again.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("DNI only must have numbers.");
+                }
             }
-            catch (Exception)
+            catch (Exception error)
             {
-
-                throw;
+                throw new Exception("It has ocurred an error.", error);
             }
         }
 
@@ -196,31 +218,46 @@ namespace Presentation_Layer
 
         private void btnLoginAdmin_Click(object sender, EventArgs e)
         {
-            int DNI = Convert.ToInt32(txtAdminDNI.Text);
             string password = txtPassword.Text;
 
             try
             {
                 //Validate the input given by the user.
-                if (Validations.IsEmptyField(txtAdminDNI.Text, password) && (Validations.IsValidDNI(DNI)))
+                if (Validations.IsEmptyField(txtAdminDNI.Text, password) && (Validations.IsNumber(txtDNIAdmin.Text)))
                 {
-                    Admin admin = logicAdmin.LSelectAdmin(DNI, password);
+                    int dni = Convert.ToInt32(txtAdminDNI.Text);
+                    ValidatorAdmin validateAdmin = new();
+                    //Return the ValidationsResult structure. If it has errors, it gives back a list with them.
+                    var result = validateAdmin.Validate(dni, password);
 
-                    //Verify that there's an admin registered.
-                    if (admin != null)
+                    if (!result.IsValid)
                     {
-                        //Keep the admin info into the List
-                        logicAdmin.adminList.Add(admin);
-
-                        this.Hide();
-                        frStore frStore = new();
-                        frStore.Show();
+                        string errors = string.Join(Environment.NewLine, result.Errors);
+                        MessageBox.Show(errors, "Validation Errors", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        MessageBox.Show("DNI or password is incorrect. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                        Admin admin = logicAdmin.LSelectAdmin(dni, password);
 
+                        //Verify that there's an admin registered.
+                        if (admin != null)
+                        {
+                            //Keep the admin in a list.
+                            logicAdmin.adminList.Add(admin);
+
+                            frStore frStore = new();
+                            frStore.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("DNI or Password incorrect. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Format of the fields incorrect.");
                 }
             }
             catch (Exception)
@@ -239,36 +276,84 @@ namespace Presentation_Layer
 
         private void btnLoginClient_Click(object sender, EventArgs e)
         {
-            int DNI = Convert.ToInt32(txtClientDNI.Text);
-
             try
             {
                 //First validate the data given by the client
-                if (!Validations.IsEmptyField(txtClientDNI.Text) && (Validations.IsValidDNI(DNI)))
+                if (!Validations.IsNumber(txtClientDNI.Text))
                 {
-                    Client client = logicClient.LSelectClient(DNI);
+                    int dni = Convert.ToInt32(txtClientDNI.Text);
+                    ValidatorClient validateClient = new();
+                    var result = validateClient.Validate(dni);
 
-                    //Verify if the user it's registered
-                    if (client != null)
+                    if (!result.IsValid)
                     {
-                        //Keep the client info into the List
-                        logicClient.clientList.Add(client);
-
-                        this.Hide();
-                        frStore frStore = new();
-                        frStore.Show();
+                        string errors = string.Join(Environment.NewLine, result.Errors);
+                        MessageBox.Show(errors, "DNI must contain 8 digits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        MessageBox.Show("DNI or password is incorrect. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //Verify if the user it's registered
+                        if (logicClient.LSelectClient(dni))
+                        {
+                            this.Hide();
+                            frStore frStore = new();
+                            frStore.Show();
+                        }
+                        else { MessageBox.Show("DNI incorrect"); }
                     }
-
                 }
             }
             catch (Exception)
             {
                 throw new Exception("Error occurred while logging in.");
             }
+        }
+
+        private void btnRegisterAdmin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string name = txtNameAdmin.Text;
+                string lastname = txtLastnameAdmin.Text;
+                string password = txtPasswordAdmin.Text;
+
+                if (Validations.IsNumber(txtDNIAdmin.Text) && Validations.IsString(name, lastname) && Validations.IsEmptyField(password))
+                {
+                    int dni = Convert.ToInt32(txtDNIClient.Text);
+
+                    Admin admin = new(dni, name, lastname, password);
+                    ValidatorAdmin validateAdmin = new();
+                    var result = validateAdmin.Validate(admin);
+
+                    if (!result.IsValid)
+                    {
+                        string errors = string.Join(Environment.NewLine, result.Errors);
+                        MessageBox.Show(errors, "Validation Errors", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        if (logicAdmin.LInsertAdmin(dni, name, lastname, password))
+                        {
+                            frStore store = new();
+                            store.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("There was an unknown error. Try again.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("DNI only must have numbers.");
+                }
+            }
+            catch (Exception error)
+            {
+                throw new Exception("It has ocurred an error.", error);
+            }
+
         }
     }
 }

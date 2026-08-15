@@ -8,26 +8,27 @@ namespace Logic_Layer
         readonly ClientRepository repositoryClient = new();
         public List<Client> clientList = new List<Client>();
         public bool LInsertClient(int dni, string name, string lastname, string email)
-        {
-            if (!LIsDNIClient(dni))
+        {   
+            Client client = new(dni, name, lastname, email);
+
+            if (repositoryClient.InsertClient(client))
             {
-                Client client = new(dni, name, lastname, email);
-                return repositoryClient.InsertClient(client);
+                clientList.Add(client);
+                return true;
             }
-            else return false;
+            return false;
         }
 
-        public bool LIsDNIClient(int dni)
-        {
-            return repositoryClient.IsDNI(dni);
-        }
 
-        public Client LSelectClient(int DNI)
+        public bool LSelectClient(int DNI)
         {
             Client client = repositoryClient.SelectClient(DNI);
-            return client;
+            if(client != null)
+            {
+                clientList.Add(client);
+                return true;
+            }
+            return false;
         }
-
-        
     }
 }

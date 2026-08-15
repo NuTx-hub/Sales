@@ -37,12 +37,12 @@ namespace Logic_Layer
             return adminData.SelectIdAdmin(dni);
         }
 
-        public Admin LSelectAdmin(int DNI, string password)
+        public Admin LSelectAdmin(int dni, string password)
         {
-            //It returns null if there isn't 
-            Admin admin = adminData.SelectAdmin(DNI, password);
+            Admin admin = adminData.SelectAdmin(dni, password);
 
-            return admin;
+            if (admin == null) return null;
+            else return admin;
         }
 
         public bool IsAdmin(int DNI, string password)

@@ -18,51 +18,22 @@ namespace Presentation_Layer
 
         public static bool IsNumber(string input)
         {
-            foreach (char c in input)
-            {
-                if (!char.IsNumber(c)) return false;
-            }
-            return true;
+            if(input == null) return false;
+            if (int.TryParse(input, out int number)) return true;
+            else return false;
         }
 
-        //public static bool IsEmail(string input)
-        //{
-        //    if(string.)
-        //}
-
-        public static bool IsName(params string []input) // OPTIMIZE THIS LATER. ACTUAL O(n^2)
+        public static bool IsString(params string []input)
         {
-            for (int i = 0; i<input.Length; i ++)
+            if(input == null) return false;
+            for(int i =0; i < input.Length; i++)
             {
-                if(string.IsNullOrWhiteSpace(input[i])) return false;
-
-                foreach (char c in input[i])
+                foreach(char c in input[i])
                 {
-                    if (!char.IsLetter(c)) return false;
+                    if(!(char.IsLetter(c))) return false;
                 }
             }
             return true;
-        }
-
-        public static bool IsValidPassword(string input)
-        {
-            if (input == null || input.Length < 6) return false;
-            return true;
-        }
-
-        public static bool IsString(string input)
-        {
-            if(input == null) return false;
-            foreach(char c in input)
-            {
-                if(!(char.IsLetter(c))) return false;
-            }
-            return true;
-        }
-
-        public static bool IsValidDNI(int dni)
-        {
-            return dni >= 10000000 && dni <= 99999999;
         }
     }
 }

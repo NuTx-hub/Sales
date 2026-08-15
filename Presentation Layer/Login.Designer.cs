@@ -397,6 +397,7 @@
             btnRegisterAdmin.TabIndex = 0;
             btnRegisterAdmin.Text = "Sign Up";
             btnRegisterAdmin.UseVisualStyleBackColor = false;
+            btnRegisterAdmin.Click += btnRegisterAdmin_Click;
             // 
             // pRegisterClient
             // 
