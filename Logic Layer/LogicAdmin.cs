@@ -3,15 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Data_Layer;
+using System.Net.Http.Headers;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Logic_Layer
 {
     //Class to create functions to validate data from the Admin entity.
     public class LogicAdmin
     {
-        public static List<Admin> adminList;
+        public List<Admin> adminList = new List<Admin>();
 
         readonly AdminRepository adminData = new();
+
         public bool LInsertAdmin(int dni, string name, string lastname, string password)
         {
             Admin admin = new(dni, name, lastname, password);
@@ -34,10 +37,12 @@ namespace Logic_Layer
             return adminData.SelectIdAdmin(dni);
         }
 
-        public Admin SelectAdmin(int idAdmin)
+        public Admin LSelectAdmin(int DNI, string password)
         {
             //It returns null if there isn't 
-            return adminData.SelectAdmin(idAdmin); 
+            Admin admin = adminData.SelectAdmin(DNI, password);
+
+            return admin;
         }
 
         public bool IsAdmin(int DNI, string password)

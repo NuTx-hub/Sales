@@ -138,26 +138,27 @@ namespace Data_Layer
             }
         }
 
-        public Admin SelectAdmin(int idAdmin)
+        public Admin SelectAdmin(int DNI, string password)
         {
             try
             {
                 SqlConnection conn = new(connectionString);
-                string query = "SELECT * FROM Admin WHERE IdAdmin = @idAdmin";
+                string query = "SELECT COUNT(1) FROM Admin WHERE DNI = @dni AND Password = @password";
                 conn.Open();
                 SqlCommand cmd = new(query, conn);
                 {
-                    cmd.Parameters.AddWithValue("@idAdmin", idAdmin);
+                    cmd.Parameters.AddWithValue("@dni", DNI);
+                    cmd.Parameters.AddWithValue("@password", password);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        int id = reader.GetInt32(0);
+                        int id = (int)reader.GetInt32(0);
                         int dni = (int)reader.GetInt32(1);
                         string name = reader.GetString(2);
                         string lastname = reader.GetString(3);
-                        string password = reader.GetString(4);
-                        Admin admin = new(id, dni, name, lastname, password);
+                        string passw = reader.GetString(4);
+                        Admin admin = new(id, dni, name, lastname, passw);
 
                         return admin;
                     }

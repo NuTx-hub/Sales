@@ -16,6 +16,14 @@ namespace Entity_Layer
         public string Lastname { get => lastname; set => lastname = value; }
         public string Email { get => email; set => email = value; }
 
+        public Client(int id, int dni, string name, string lastname, string email)
+        {
+            this.IdClient = id;
+            this.DNI = dni;
+            this.Name = name;
+            this.Lastname = lastname;
+            this.Email = email;
+        }
         public Client(int dni, string name, string lastName, string email)
         {
             this.DNI = dni;

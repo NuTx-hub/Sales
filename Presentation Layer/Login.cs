@@ -1,4 +1,5 @@
-﻿using Logic_Layer;
+﻿using Entity_Layer;
+using Logic_Layer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,12 @@ namespace Presentation_Layer
             InitializeComponent();
         }
         LogicAdmin logicAdmin = new();
+        LogicClient logicClient = new();
+
+        private bool ValidateClient(params object[] args)
+        {
+            
+        }
 
         private static void StyleLabels(params Label[] lblList)
         {
@@ -158,8 +165,21 @@ namespace Presentation_Layer
 
         private void btnRegisterClient_Click(object sender, EventArgs e)
         {
-            //pRegisterClient.Visible = false;
-            //pLoginClient.Visible = true;
+            try
+            {
+                string name = txtNameClient.Text;
+                string lastname = txtLastnameClient.Text;
+                string email = txtEmail.Text;
+                int dni = Convert.ToInt32(txtDNIClient.Text);
+
+                if()
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void lblRegisterClient_Click(object sender, EventArgs e)
@@ -176,34 +196,79 @@ namespace Presentation_Layer
 
         private void btnLoginAdmin_Click(object sender, EventArgs e)
         {
-            int DNI = Convert.ToInt32(txtAdminDNI.Text) ;
+            int DNI = Convert.ToInt32(txtAdminDNI.Text);
             string password = txtPassword.Text;
 
             try
             {
-                if(Validations.IsEmptyField(txtAdminDNI.Text, password))
+                //Validate the input given by the user.
+                if (Validations.IsEmptyField(txtAdminDNI.Text, password) && (Validations.IsValidDNI(DNI)))
                 {
-                    if(logicAdmin.IsAdmin(DNI, password))
+                    Admin admin = logicAdmin.LSelectAdmin(DNI, password);
+
+                    //Verify that there's an admin registered.
+                    if (admin != null)
                     {
                         //Keep the admin info into the List
-                        int id = logicAdmin.
-                        if(logicAdmin.SelectAdmin())
-                        LogicAdmin.adminList.Add()
+                        logicAdmin.adminList.Add(admin);
 
                         this.Hide();
                         frStore frStore = new();
-                        frStore.Show(); 
+                        frStore.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("DNI or password is incorrect. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
             }
             catch (Exception)
             {
-
-                throw;
+                throw new Exception("Error occurred while logging in.");
             }
+        }
 
+        private void txtAdminDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
 
+        private void btnLoginClient_Click(object sender, EventArgs e)
+        {
+            int DNI = Convert.ToInt32(txtClientDNI.Text);
+
+            try
+            {
+                //First validate the data given by the client
+                if (!Validations.IsEmptyField(txtClientDNI.Text) && (Validations.IsValidDNI(DNI)))
+                {
+                    Client client = logicClient.LSelectClient(DNI);
+
+                    //Verify if the user it's registered
+                    if (client != null)
+                    {
+                        //Keep the client info into the List
+                        logicClient.clientList.Add(client);
+
+                        this.Hide();
+                        frStore frStore = new();
+                        frStore.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("DNI or password is incorrect. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error occurred while logging in.");
+            }
         }
     }
 }

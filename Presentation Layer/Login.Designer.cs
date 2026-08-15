@@ -44,30 +44,30 @@
             lblRegisterClient = new Label();
             btnClientUndo = new Button();
             panel3 = new Panel();
-            txtCustomerDNI = new TextBox();
+            txtClientDNI = new TextBox();
             btnLoginClient = new RoundButton();
             pRegisterAdmin = new Panel();
             label1 = new Label();
             panel11 = new Panel();
-            textBox6 = new TextBox();
+            txtPasswordAdmin = new TextBox();
             panel10 = new Panel();
-            textBox5 = new TextBox();
+            txtLastnameAdmin = new TextBox();
             btnRegisterAdminUndo = new Button();
             panel5 = new Panel();
             panel6 = new Panel();
-            textBox1 = new TextBox();
-            txtDNI = new TextBox();
+            txtNameAdmin = new TextBox();
+            txtDNIAdmin = new TextBox();
             btnRegisterAdmin = new RoundButton();
             pRegisterClient = new Panel();
             panel14 = new Panel();
-            textBox8 = new TextBox();
+            txtEmail = new TextBox();
             panel13 = new Panel();
-            textBox7 = new TextBox();
+            txtLastnameClient = new TextBox();
             btnRegisterClientUndo = new Button();
             panel8 = new Panel();
             panel9 = new Panel();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            txtNameClient = new TextBox();
+            txtDNIClient = new TextBox();
             btnRegisterClient = new RoundButton();
             label2 = new Label();
             pSelectUser.SuspendLayout();
@@ -188,6 +188,7 @@
             txtAdminDNI.PlaceholderText = "Type your DNI";
             txtAdminDNI.Size = new Size(198, 36);
             txtAdminDNI.TabIndex = 4;
+            txtAdminDNI.KeyPress += txtAdminDNI_KeyPress;
             // 
             // btnLoginAdmin
             // 
@@ -208,7 +209,7 @@
             pLoginClient.Controls.Add(lblRegisterClient);
             pLoginClient.Controls.Add(btnClientUndo);
             pLoginClient.Controls.Add(panel3);
-            pLoginClient.Controls.Add(txtCustomerDNI);
+            pLoginClient.Controls.Add(txtClientDNI);
             pLoginClient.Controls.Add(btnLoginClient);
             pLoginClient.Location = new Point(466, 89);
             pLoginClient.Name = "pLoginClient";
@@ -246,16 +247,16 @@
             panel3.Size = new Size(200, 3);
             panel3.TabIndex = 6;
             // 
-            // txtCustomerDNI
+            // txtClientDNI
             // 
-            txtCustomerDNI.BorderStyle = BorderStyle.None;
-            txtCustomerDNI.Font = new Font("Segoe UI", 20F);
-            txtCustomerDNI.ForeColor = Color.Black;
-            txtCustomerDNI.Location = new Point(59, 101);
-            txtCustomerDNI.Name = "txtCustomerDNI";
-            txtCustomerDNI.PlaceholderText = "Type your DNI";
-            txtCustomerDNI.Size = new Size(198, 36);
-            txtCustomerDNI.TabIndex = 5;
+            txtClientDNI.BorderStyle = BorderStyle.None;
+            txtClientDNI.Font = new Font("Segoe UI", 20F);
+            txtClientDNI.ForeColor = Color.Black;
+            txtClientDNI.Location = new Point(59, 101);
+            txtClientDNI.Name = "txtClientDNI";
+            txtClientDNI.PlaceholderText = "Type your DNI";
+            txtClientDNI.Size = new Size(198, 36);
+            txtClientDNI.TabIndex = 5;
             // 
             // btnLoginClient
             // 
@@ -268,20 +269,21 @@
             btnLoginClient.TabIndex = 0;
             btnLoginClient.Text = "Log In";
             btnLoginClient.UseVisualStyleBackColor = false;
+            btnLoginClient.Click += btnLoginClient_Click;
             // 
             // pRegisterAdmin
             // 
             pRegisterAdmin.BackColor = Color.FromArgb(248, 246, 239);
             pRegisterAdmin.Controls.Add(label1);
             pRegisterAdmin.Controls.Add(panel11);
-            pRegisterAdmin.Controls.Add(textBox6);
+            pRegisterAdmin.Controls.Add(txtPasswordAdmin);
             pRegisterAdmin.Controls.Add(panel10);
-            pRegisterAdmin.Controls.Add(textBox5);
+            pRegisterAdmin.Controls.Add(txtLastnameAdmin);
             pRegisterAdmin.Controls.Add(btnRegisterAdminUndo);
             pRegisterAdmin.Controls.Add(panel5);
             pRegisterAdmin.Controls.Add(panel6);
-            pRegisterAdmin.Controls.Add(textBox1);
-            pRegisterAdmin.Controls.Add(txtDNI);
+            pRegisterAdmin.Controls.Add(txtNameAdmin);
+            pRegisterAdmin.Controls.Add(txtDNIAdmin);
             pRegisterAdmin.Controls.Add(btnRegisterAdmin);
             pRegisterAdmin.Location = new Point(565, 464);
             pRegisterAdmin.Name = "pRegisterAdmin";
@@ -307,16 +309,16 @@
             panel11.Size = new Size(200, 3);
             panel11.TabIndex = 11;
             // 
-            // textBox6
+            // txtPasswordAdmin
             // 
-            textBox6.BorderStyle = BorderStyle.None;
-            textBox6.Font = new Font("Segoe UI", 16F);
-            textBox6.Location = new Point(58, 228);
-            textBox6.Name = "textBox6";
-            textBox6.PlaceholderText = "Password";
-            textBox6.Size = new Size(198, 29);
-            textBox6.TabIndex = 12;
-            textBox6.UseSystemPasswordChar = true;
+            txtPasswordAdmin.BorderStyle = BorderStyle.None;
+            txtPasswordAdmin.Font = new Font("Segoe UI", 16F);
+            txtPasswordAdmin.Location = new Point(58, 228);
+            txtPasswordAdmin.Name = "txtPasswordAdmin";
+            txtPasswordAdmin.PlaceholderText = "Password";
+            txtPasswordAdmin.Size = new Size(198, 29);
+            txtPasswordAdmin.TabIndex = 12;
+            txtPasswordAdmin.UseSystemPasswordChar = true;
             // 
             // panel10
             // 
@@ -326,15 +328,15 @@
             panel10.Size = new Size(200, 3);
             panel10.TabIndex = 9;
             // 
-            // textBox5
+            // txtLastnameAdmin
             // 
-            textBox5.BorderStyle = BorderStyle.None;
-            textBox5.Font = new Font("Segoe UI", 16F);
-            textBox5.Location = new Point(58, 181);
-            textBox5.Name = "textBox5";
-            textBox5.PlaceholderText = "Lastname";
-            textBox5.Size = new Size(198, 29);
-            textBox5.TabIndex = 10;
+            txtLastnameAdmin.BorderStyle = BorderStyle.None;
+            txtLastnameAdmin.Font = new Font("Segoe UI", 16F);
+            txtLastnameAdmin.Location = new Point(58, 181);
+            txtLastnameAdmin.Name = "txtLastnameAdmin";
+            txtLastnameAdmin.PlaceholderText = "Lastname";
+            txtLastnameAdmin.Size = new Size(198, 29);
+            txtLastnameAdmin.TabIndex = 10;
             // 
             // btnRegisterAdminUndo
             // 
@@ -364,25 +366,25 @@
             panel6.Size = new Size(200, 3);
             panel6.TabIndex = 4;
             // 
-            // textBox1
+            // txtNameAdmin
             // 
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 16F);
-            textBox1.Location = new Point(58, 132);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Name";
-            textBox1.Size = new Size(198, 29);
-            textBox1.TabIndex = 5;
+            txtNameAdmin.BorderStyle = BorderStyle.None;
+            txtNameAdmin.Font = new Font("Segoe UI", 16F);
+            txtNameAdmin.Location = new Point(58, 132);
+            txtNameAdmin.Name = "txtNameAdmin";
+            txtNameAdmin.PlaceholderText = "Name";
+            txtNameAdmin.Size = new Size(198, 29);
+            txtNameAdmin.TabIndex = 5;
             // 
-            // txtDNI
+            // txtDNIAdmin
             // 
-            txtDNI.BorderStyle = BorderStyle.None;
-            txtDNI.Font = new Font("Segoe UI", 16F);
-            txtDNI.Location = new Point(59, 83);
-            txtDNI.Name = "txtDNI";
-            txtDNI.PlaceholderText = "DNI";
-            txtDNI.Size = new Size(198, 29);
-            txtDNI.TabIndex = 4;
+            txtDNIAdmin.BorderStyle = BorderStyle.None;
+            txtDNIAdmin.Font = new Font("Segoe UI", 16F);
+            txtDNIAdmin.Location = new Point(59, 83);
+            txtDNIAdmin.Name = "txtDNIAdmin";
+            txtDNIAdmin.PlaceholderText = "DNI";
+            txtDNIAdmin.Size = new Size(198, 29);
+            txtDNIAdmin.TabIndex = 4;
             // 
             // btnRegisterAdmin
             // 
@@ -400,14 +402,14 @@
             // 
             pRegisterClient.BackColor = Color.FromArgb(248, 246, 239);
             pRegisterClient.Controls.Add(panel14);
-            pRegisterClient.Controls.Add(textBox8);
+            pRegisterClient.Controls.Add(txtEmail);
             pRegisterClient.Controls.Add(panel13);
-            pRegisterClient.Controls.Add(textBox7);
+            pRegisterClient.Controls.Add(txtLastnameClient);
             pRegisterClient.Controls.Add(btnRegisterClientUndo);
             pRegisterClient.Controls.Add(panel8);
             pRegisterClient.Controls.Add(panel9);
-            pRegisterClient.Controls.Add(textBox3);
-            pRegisterClient.Controls.Add(textBox4);
+            pRegisterClient.Controls.Add(txtNameClient);
+            pRegisterClient.Controls.Add(txtDNIClient);
             pRegisterClient.Controls.Add(btnRegisterClient);
             pRegisterClient.Controls.Add(label2);
             pRegisterClient.Location = new Point(214, 464);
@@ -423,15 +425,15 @@
             panel14.Size = new Size(200, 3);
             panel14.TabIndex = 15;
             // 
-            // textBox8
+            // txtEmail
             // 
-            textBox8.BorderStyle = BorderStyle.None;
-            textBox8.Font = new Font("Segoe UI", 16F);
-            textBox8.Location = new Point(52, 227);
-            textBox8.Name = "textBox8";
-            textBox8.PlaceholderText = "Email";
-            textBox8.Size = new Size(198, 29);
-            textBox8.TabIndex = 16;
+            txtEmail.BorderStyle = BorderStyle.None;
+            txtEmail.Font = new Font("Segoe UI", 16F);
+            txtEmail.Location = new Point(52, 227);
+            txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "Email";
+            txtEmail.Size = new Size(198, 29);
+            txtEmail.TabIndex = 16;
             // 
             // panel13
             // 
@@ -441,15 +443,15 @@
             panel13.Size = new Size(200, 3);
             panel13.TabIndex = 9;
             // 
-            // textBox7
+            // txtLastnameClient
             // 
-            textBox7.BorderStyle = BorderStyle.None;
-            textBox7.Font = new Font("Segoe UI", 16F);
-            textBox7.Location = new Point(52, 182);
-            textBox7.Name = "textBox7";
-            textBox7.PlaceholderText = "Lastname";
-            textBox7.Size = new Size(198, 29);
-            textBox7.TabIndex = 10;
+            txtLastnameClient.BorderStyle = BorderStyle.None;
+            txtLastnameClient.Font = new Font("Segoe UI", 16F);
+            txtLastnameClient.Location = new Point(52, 182);
+            txtLastnameClient.Name = "txtLastnameClient";
+            txtLastnameClient.PlaceholderText = "Lastname";
+            txtLastnameClient.Size = new Size(198, 29);
+            txtLastnameClient.TabIndex = 10;
             // 
             // btnRegisterClientUndo
             // 
@@ -479,25 +481,25 @@
             panel9.Size = new Size(200, 3);
             panel9.TabIndex = 4;
             // 
-            // textBox3
+            // txtNameClient
             // 
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Font = new Font("Segoe UI", 16F);
-            textBox3.Location = new Point(52, 133);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Name";
-            textBox3.Size = new Size(198, 29);
-            textBox3.TabIndex = 5;
+            txtNameClient.BorderStyle = BorderStyle.None;
+            txtNameClient.Font = new Font("Segoe UI", 16F);
+            txtNameClient.Location = new Point(52, 133);
+            txtNameClient.Name = "txtNameClient";
+            txtNameClient.PlaceholderText = "Name";
+            txtNameClient.Size = new Size(198, 29);
+            txtNameClient.TabIndex = 5;
             // 
-            // textBox4
+            // txtDNIClient
             // 
-            textBox4.BorderStyle = BorderStyle.None;
-            textBox4.Font = new Font("Segoe UI", 16F);
-            textBox4.Location = new Point(52, 83);
-            textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = "DNI";
-            textBox4.Size = new Size(198, 29);
-            textBox4.TabIndex = 4;
+            txtDNIClient.BorderStyle = BorderStyle.None;
+            txtDNIClient.Font = new Font("Segoe UI", 16F);
+            txtDNIClient.Location = new Point(52, 83);
+            txtDNIClient.Name = "txtDNIClient";
+            txtDNIClient.PlaceholderText = "DNI";
+            txtDNIClient.Size = new Size(198, 29);
+            txtDNIClient.TabIndex = 4;
             // 
             // btnRegisterClient
             // 
@@ -565,34 +567,34 @@
         private Panel panel2;
         private Panel panel1;
         private Panel panel3;
-        private TextBox txtCustomerDNI;
+        private TextBox txtClientDNI;
         private Button btnClientUndo;
         private Button btnAdminUndo;
         private Label lblRegisterAdmin;
         private Label lblRegisterClient;
         private Panel pRegisterAdmin;
         private Panel panel10;
-        private TextBox textBox5;
+        private TextBox txtLastnameAdmin;
         private Button btnRegisterAdminUndo;
         private Panel panel5;
         private Panel panel6;
-        private TextBox textBox1;
-        private TextBox txtDNI;
+        private TextBox txtNameAdmin;
+        private TextBox txtDNIAdmin;
         private RoundButton btnRegisterAdmin;
         private Panel pRegisterClient;
         private Button btnRegisterClientUndo;
         private Panel panel8;
         private Panel panel9;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox txtNameClient;
+        private TextBox txtDNIClient;
         private RoundButton btnRegisterClient;
         private Panel panel11;
-        private TextBox textBox6;
+        private TextBox txtPasswordAdmin;
         private Panel panel13;
-        private TextBox textBox7;
+        private TextBox txtLastnameClient;
         private Label label1;
         private Label label2;
         private Panel panel14;
-        private TextBox textBox8;
+        private TextBox txtEmail;
     }
 }

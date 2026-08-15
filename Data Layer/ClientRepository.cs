@@ -86,7 +86,41 @@ namespace Data_Layer
             {
                 throw new Exception ("An error has ocurred. Try again.", exc);
             }
+        }
 
+        public Client SelectClient(int DNI)
+        {
+            try
+            {
+                SqlConnection conn = new(connectionString);
+                string query = "SELECT * FROM Client WHERE DNI = @dni";
+                conn.Open();
+                SqlCommand cmd = new(query, conn);
+                {
+                    cmd.Parameters.AddWithValue("@dni", DNI);
+                    using SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        int idClient = reader.GetInt32(0);
+                        int dni = reader.GetInt32(1);
+                        string name = reader.GetString(2);
+                        string lastname = reader.GetString(3);
+                        string email = reader.GetString(4);
+
+                        Client client = new(idClient, dni, name, lastname, email);
+                        return client;
+                    }
+                    else return null; // No client found with the given DNI
+                }
+            }
+            catch (SqlException sqlExc)
+            {
+                throw new Exception("A database error has ocurred.", sqlExc);
+            }
+            catch (Exception exc)
+            {
+                throw new Exception("An error has ocurred. Try again.", exc);
+            }
         }
     }
 }
