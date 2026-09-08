@@ -29,5 +29,10 @@ namespace Logic_Layer
             }
             return null;
         }
+
+        public bool IsDNIClient(int DNI)
+        {
+            return repositoryClient.IsDNI(DNI);
+        }
     }
 }

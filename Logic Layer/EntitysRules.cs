@@ -28,7 +28,7 @@ namespace Logic_Layer
 
         public static bool IsValidPassword(string input)
         {
-            if (input == null || input.Length < 6) return false;
+            if (string.IsNullOrEmpty(input) || input.Length < 6) return false;
             return true;
         }
 

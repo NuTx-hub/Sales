@@ -33,6 +33,7 @@
             btnClient = new RoundButton();
             btnAdmin = new RoundButton();
             pLoginAdmin = new Panel();
+            lblLoginAdmin = new Label();
             lblRegisterAdmin = new Label();
             btnAdminUndo = new Button();
             panel2 = new Panel();
@@ -41,6 +42,7 @@
             txtAdminDNI = new TextBox();
             btnLoginAdmin = new RoundButton();
             pLoginClient = new Panel();
+            lblLoginCLient = new Label();
             lblRegisterClient = new Label();
             btnClientUndo = new Button();
             panel3 = new Panel();
@@ -82,7 +84,7 @@
             pSelectUser.BackColor = Color.FromArgb(248, 246, 239);
             pSelectUser.Controls.Add(btnClient);
             pSelectUser.Controls.Add(btnAdmin);
-            pSelectUser.Location = new Point(809, 102);
+            pSelectUser.Location = new Point(853, 89);
             pSelectUser.Name = "pSelectUser";
             pSelectUser.Size = new Size(305, 333);
             pSelectUser.TabIndex = 0;
@@ -96,7 +98,7 @@
             btnClient.Name = "btnClient";
             btnClient.Size = new Size(198, 62);
             btnClient.TabIndex = 0;
-            btnClient.Text = "Costumer";
+            btnClient.Text = "Client";
             btnClient.UseVisualStyleBackColor = false;
             btnClient.Click += btnClient_Click;
             // 
@@ -109,13 +111,14 @@
             btnAdmin.Name = "btnAdmin";
             btnAdmin.Size = new Size(198, 62);
             btnAdmin.TabIndex = 1;
-            btnAdmin.Text = " Manager";
+            btnAdmin.Text = "Admin";
             btnAdmin.UseVisualStyleBackColor = false;
             btnAdmin.Click += btnAdmin_Click;
             // 
             // pLoginAdmin
             // 
             pLoginAdmin.BackColor = Color.FromArgb(248, 246, 239);
+            pLoginAdmin.Controls.Add(lblLoginAdmin);
             pLoginAdmin.Controls.Add(lblRegisterAdmin);
             pLoginAdmin.Controls.Add(btnAdminUndo);
             pLoginAdmin.Controls.Add(panel2);
@@ -123,10 +126,21 @@
             pLoginAdmin.Controls.Add(txtPassword);
             pLoginAdmin.Controls.Add(txtAdminDNI);
             pLoginAdmin.Controls.Add(btnLoginAdmin);
-            pLoginAdmin.Location = new Point(88, 64);
+            pLoginAdmin.Location = new Point(87, 89);
             pLoginAdmin.Name = "pLoginAdmin";
             pLoginAdmin.Size = new Size(305, 333);
             pLoginAdmin.TabIndex = 2;
+            // 
+            // lblLoginAdmin
+            // 
+            lblLoginAdmin.AutoSize = true;
+            lblLoginAdmin.Font = new Font("Segoe UI", 20F);
+            lblLoginAdmin.ForeColor = Color.Lime;
+            lblLoginAdmin.Location = new Point(63, 25);
+            lblLoginAdmin.Name = "lblLoginAdmin";
+            lblLoginAdmin.Size = new Size(176, 37);
+            lblLoginAdmin.TabIndex = 18;
+            lblLoginAdmin.Text = "Log in Admin";
             // 
             // lblRegisterAdmin
             // 
@@ -145,7 +159,7 @@
             btnAdminUndo.BackColor = Color.FromArgb(248, 246, 239);
             btnAdminUndo.BackgroundImage = (Image)resources.GetObject("btnAdminUndo.BackgroundImage");
             btnAdminUndo.BackgroundImageLayout = ImageLayout.Stretch;
-            btnAdminUndo.Location = new Point(22, 25);
+            btnAdminUndo.Location = new Point(11, 25);
             btnAdminUndo.Name = "btnAdminUndo";
             btnAdminUndo.Size = new Size(35, 35);
             btnAdminUndo.TabIndex = 8;
@@ -188,7 +202,6 @@
             txtAdminDNI.PlaceholderText = "Type your DNI";
             txtAdminDNI.Size = new Size(198, 36);
             txtAdminDNI.TabIndex = 4;
-            txtAdminDNI.KeyPress += txtAdminDNI_KeyPress;
             // 
             // btnLoginAdmin
             // 
@@ -206,6 +219,7 @@
             // pLoginClient
             // 
             pLoginClient.BackColor = Color.FromArgb(248, 246, 239);
+            pLoginClient.Controls.Add(lblLoginCLient);
             pLoginClient.Controls.Add(lblRegisterClient);
             pLoginClient.Controls.Add(btnClientUndo);
             pLoginClient.Controls.Add(panel3);
@@ -215,6 +229,17 @@
             pLoginClient.Name = "pLoginClient";
             pLoginClient.Size = new Size(305, 333);
             pLoginClient.TabIndex = 3;
+            // 
+            // lblLoginCLient
+            // 
+            lblLoginCLient.AutoSize = true;
+            lblLoginCLient.Font = new Font("Segoe UI", 20F);
+            lblLoginCLient.ForeColor = Color.Lime;
+            lblLoginCLient.Location = new Point(73, 25);
+            lblLoginCLient.Name = "lblLoginCLient";
+            lblLoginCLient.Size = new Size(167, 37);
+            lblLoginCLient.TabIndex = 19;
+            lblLoginCLient.Text = "Log in Client";
             // 
             // lblRegisterClient
             // 
@@ -232,7 +257,7 @@
             // 
             btnClientUndo.BackgroundImage = (Image)resources.GetObject("btnClientUndo.BackgroundImage");
             btnClientUndo.BackgroundImageLayout = ImageLayout.Stretch;
-            btnClientUndo.Location = new Point(18, 20);
+            btnClientUndo.Location = new Point(18, 25);
             btnClientUndo.Name = "btnClientUndo";
             btnClientUndo.Size = new Size(35, 35);
             btnClientUndo.TabIndex = 7;
@@ -289,7 +314,6 @@
             pRegisterAdmin.Name = "pRegisterAdmin";
             pRegisterAdmin.Size = new Size(305, 348);
             pRegisterAdmin.TabIndex = 4;
-            pRegisterAdmin.Paint += pRegisterAdmin_Paint;
             // 
             // label1
             // 
@@ -344,7 +368,7 @@
             btnRegisterAdminUndo.BackColor = Color.FromArgb(248, 246, 239);
             btnRegisterAdminUndo.BackgroundImage = (Image)resources.GetObject("btnRegisterAdminUndo.BackgroundImage");
             btnRegisterAdminUndo.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRegisterAdminUndo.Location = new Point(5, 22);
+            btnRegisterAdminUndo.Location = new Point(17, 24);
             btnRegisterAdminUndo.Name = "btnRegisterAdminUndo";
             btnRegisterAdminUndo.Size = new Size(35, 35);
             btnRegisterAdminUndo.TabIndex = 8;
@@ -460,7 +484,7 @@
             btnRegisterClientUndo.BackColor = Color.FromArgb(248, 246, 239);
             btnRegisterClientUndo.BackgroundImage = (Image)resources.GetObject("btnRegisterClientUndo.BackgroundImage");
             btnRegisterClientUndo.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRegisterClientUndo.Location = new Point(3, 25);
+            btnRegisterClientUndo.Location = new Point(11, 27);
             btnRegisterClientUndo.Name = "btnRegisterClientUndo";
             btnRegisterClientUndo.Size = new Size(35, 35);
             btnRegisterClientUndo.TabIndex = 8;
@@ -521,7 +545,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 20F);
             label2.ForeColor = Color.Lime;
-            label2.Location = new Point(62, 25);
+            label2.Location = new Point(52, 25);
             label2.Name = "label2";
             label2.Size = new Size(188, 37);
             label2.TabIndex = 17;
@@ -598,5 +622,7 @@
         private Label label2;
         private Panel panel14;
         private TextBox txtEmail;
+        private Label lblLoginAdmin;
+        private Label lblLoginCLient;
     }
 }

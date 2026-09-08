@@ -32,9 +32,9 @@ namespace Logic_Layer
         }
 
         //Verify that the DNI it's in the database
-        public int GetId(int dni)
+        public bool IsDNIAdmin(int dni)
         {
-            return adminData.SelectIdAdmin(dni);
+            return adminData.IsDNI(dni);
         }
 
         public Admin LSelectAdmin(int dni, string password)

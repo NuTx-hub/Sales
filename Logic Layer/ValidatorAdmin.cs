@@ -39,7 +39,7 @@ namespace Logic_Layer
         public void ValidatePassword(ValidationResult result, string password)
         {
             if (!EntityRules.IsValidPassword(password))
-                result.AddError("It must have atleast 6 digits.");
+                result.AddError("Password it must contain atleast 6 digits.");
         }
 
         private void ValidateName(ValidationResult result, params string[] names)

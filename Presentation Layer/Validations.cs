@@ -23,10 +23,10 @@ namespace Presentation_Layer
             else return false;
         }
 
-        public static bool IsString(params string []input)
+        public static bool IsString(params string []input) //fix to O(n)
         {
             if(input == null) return false;
-            for(int i =0; i < input.Length; i++)
+            for(int i =0; i<input.Length; i++)
             {
                 foreach(char c in input[i])
                 {

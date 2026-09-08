@@ -71,7 +71,7 @@ namespace Data_Layer
 
                 SqlCommand cmd = new(query, conn);
                 {
-                    cmd.Parameters.AddWithValue("@dni", dni);
+                    cmd.Parameters.AddWithValue("@dni", Convert.ToString(dni));
                     int count = (int)cmd.ExecuteScalar();
                     return count > 0;
                 }
@@ -83,7 +83,7 @@ namespace Data_Layer
             }
             catch (Exception exc)
             {
-                throw new Exception ("An error has ocurred. Try again.", exc);
+                throw new Exception ("An unknown error has ocurred. Try again.", exc);
             }
         }
 
@@ -92,21 +92,20 @@ namespace Data_Layer
             try
             {
                 SqlConnection conn = new(connectionString);
-                string query = "SELECT * FROM Client WHERE DNI = @dni";
+                string query = "SELECT ClientId, Name, Lastname, Email FROM Client WHERE DNI = @dni";
                 conn.Open();
                 SqlCommand cmd = new(query, conn);
                 {
-                    cmd.Parameters.AddWithValue("@dni", DNI);
+                    cmd.Parameters.AddWithValue("@dni", Convert.ToString(DNI));
                     using SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
                         int idClient = reader.GetInt32(0);
-                        int dni = reader.GetInt32(1);
-                        string name = reader.GetString(2);
-                        string lastname = reader.GetString(3);
-                        string email = reader.GetString(4);
+                        string name = reader.GetString(1);
+                        string lastname = reader.GetString(2);
+                        string email = reader.GetString(3);
 
-                        Client client = new(idClient, dni, name, lastname, email);
+                        Client client = new(idClient, DNI, name, lastname, email);
                         return client;
                     }
                     else return null; // No client found with the given DNI
@@ -118,7 +117,7 @@ namespace Data_Layer
             }
             catch (Exception exc)
             {
-                throw new Exception("An error has ocurred. Try again.", exc);
+                throw new Exception("An unknown error has ocurred. Try again.", exc);
             }
         }
     }
