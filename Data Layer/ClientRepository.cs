@@ -13,11 +13,10 @@ namespace Data_Layer
             {
                 using SqlConnection conn = new(connectionString);
                 conn.Open();
-                string query = "INSERT INTO Client (Id, DNI, Name, Lastname, Email) VALUES(@Id, @DNI, @Name, @Lastname, @Email)";
+                string query = "INSERT INTO Client (DNI, Name, Lastname, Email) VALUES(@DNI, @Name, @Lastname, @Email)";
                 using SqlCommand cmd = new(query, conn);
                 {
-                    cmd.Parameters.AddWithValue("@Id", client.IdClient);
-                    cmd.Parameters.AddWithValue("@Ci", client.DNI);
+                    cmd.Parameters.AddWithValue("@DNI", Convert.ToString(client.DNI));
                     cmd.Parameters.AddWithValue("@Name", client.Name);
                     cmd.Parameters.AddWithValue("@Lastname", client.Lastname);
                     cmd.Parameters.AddWithValue("@Email", client.Email);

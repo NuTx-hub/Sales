@@ -28,7 +28,7 @@ namespace Entity_Layer
         {
             this.DNI = dni;
             this.Name = name;
-            this.Lastname = lastname;
+            this.Lastname = lastName;
             this.Email = email;
         }
     }

@@ -19,16 +19,15 @@ namespace Logic_Layer
             return false;
         }
 
-
-        public bool LSelectClient(int DNI)
+        public Client LSelectClient(int DNI)
         {
             Client client = repositoryClient.SelectClient(DNI);
             if(client != null)
             {
                 clientList.Add(client);
-                return true;
+                return client;
             }
-            return false;
+            return null;
         }
     }
 }

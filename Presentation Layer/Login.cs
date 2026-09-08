@@ -39,8 +39,11 @@ namespace Presentation_Layer
         }
         private void LoadPanels()
         {
+            //Set the visibility of the panels
             pSelectUser.Visible = true;
             pRegisterClient.Visible = pRegisterAdmin.Visible = pLoginClient.Visible = pLoginAdmin.Visible = false;
+
+            //Modify the design of the panels and buttons
             ModifyPanel();
             StyleLabels(lblRegisterAdmin, lblRegisterClient);
         }
@@ -129,8 +132,8 @@ namespace Presentation_Layer
         private void btnClient_Click(object sender, EventArgs e)
         {
             pSelectUser.Visible = false;
-            pLoginClient.Visible = false;
-            pLoginAdmin.Visible = true;
+            pLoginClient.Visible = true;
+            pLoginAdmin.Visible = false;
 
         }
 
@@ -166,23 +169,33 @@ namespace Presentation_Layer
                 string lastname = txtLastnameClient.Text;
                 string email = txtEmail.Text;
 
+                //Validate the input given by the user.
                 if (Validations.IsNumber(txtDNIClient.Text) && Validations.IsString(name, lastname))
                 {
                     int dni = Convert.ToInt32(txtDNIClient.Text);
 
                     Client client = new(dni, name, lastname, email);
+
+                    //Return the ValidationsResult structure. If it has errors, it gives back a list with them.
                     ValidatorClient validateClient = new();
                     var result = validateClient.Validate(client);
 
                     if (!result.IsValid)
                     {
-                        string errors = string.Join(Environment.NewLine, result.Errors);
-                        MessageBox.Show(errors, "Validation Errors", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        string errors = "";
+                        errors = string.Join(Environment.NewLine, result.Errors);
+                        if (!string.IsNullOrEmpty(errors))
+                        {
+                            MessageBox.Show(errors);
+                            //MessageBox.Show(errors, "Validation Errors", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                     else
                     {
                         if (logicClient.LInsertClient(dni, name, lastname, email))
                         {
+                            MessageBox.Show("Client registered successfully.");
                             frStore store = new();
                             store.Show();
                             this.Hide();
@@ -298,16 +311,22 @@ namespace Presentation_Layer
 
                     if (!result.IsValid)
                     {
-                        string errors = string.Join(Environment.NewLine, result.Errors);
-                        MessageBox.Show(errors, "DNI must contain 8 digits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string errors = string.Empty;
+                        errors = string.Join(Environment.NewLine, result.Errors);
+
+                        if (!string.IsNullOrEmpty(errors))
+                        {
+                            MessageBox.Show(errors, "DNI must contain 8 digits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                     else
                     {
                         //Verify if the user it's registered
                         if (logicClient.LSelectClient(dni))
                         {
-                            this.Hide();
                             frStore frStore = new();
+
+                            this.Hide();
                             frStore.Show();
                         }
                         else { MessageBox.Show("DNI incorrect"); }

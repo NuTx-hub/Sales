@@ -18,7 +18,7 @@ namespace Presentation_Layer
 
         public static bool IsNumber(string input)
         {
-            if(input == null) return false;
+            if(string.IsNullOrEmpty(input)) return false;
             if (int.TryParse(input, out int number)) return true;
             else return false;
         }

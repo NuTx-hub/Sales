@@ -10,9 +10,10 @@ namespace Logic_Layer
     {
         public static bool IsValidName(params string[] input) // OPTIMIZE THIS LATER. ACTUAL O(n^2)
         {
-            if (input != null)
+            if (input == null) return false;
+            else
             {
-                for (int i = 0; i < input.Length; i++)
+                for (int i=0; i < input.Length; i++)
                 {
                     if (string.IsNullOrWhiteSpace(input[i])) return false;
 
@@ -23,7 +24,6 @@ namespace Logic_Layer
                 }
                 return true;
             }
-            else return false;
         }
 
         public static bool IsValidPassword(string input)

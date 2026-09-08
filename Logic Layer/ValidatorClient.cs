@@ -34,7 +34,7 @@ namespace Logic_Layer
         {
             foreach(string name in input)
             {
-                if (!EntityRules.IsValidName(name)) result.AddError("Field must only contain letters.");
+                if (!EntityRules.IsValidName(name)) result.AddError("Name and Lastname must only contain letters.");
             }
         }
 
