@@ -23,7 +23,6 @@ namespace Logic_Layer
             return result;
         }
 
-
         // GENERIC VALIDATION FIELDS // 
 
         public void ValidateDNI(ValidationResult result, int dni)

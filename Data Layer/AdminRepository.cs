@@ -20,7 +20,8 @@ namespace Data_Layer
                 string query = "INSERT INTO Admin (DNI, Name, Lastname, Password) VALUES (@DNI, @Name, @Lastname, @Password) ";
                 SqlCommand cmd = new(query, con);
                 {
-                    cmd.Parameters.AddWithValue("@DNI", admin.DNI);
+                    string dni = Convert.ToString(admin.DNI);
+                    cmd.Parameters.AddWithValue("@DNI", dni);
                     cmd.Parameters.AddWithValue("@Name", admin.Name);
                     cmd.Parameters.AddWithValue("@Lastname", admin.Lastname);
                     cmd.Parameters.AddWithValue("@Password", admin.Password);

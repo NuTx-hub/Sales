@@ -46,7 +46,7 @@ namespace Logic_Layer
         {
             foreach(var name in names)
             {
-                if (!EntityRules.IsName(name))
+                if (!EntityRules.IsValidName(name))
                     result.AddError("Field must not be empty.");
             }
         }

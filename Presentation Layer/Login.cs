@@ -122,8 +122,8 @@ namespace Presentation_Layer
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             pSelectUser.Visible = false;
-            pLoginAdmin.Visible = false;
-            pLoginClient.Visible = true;
+            pLoginAdmin.Visible = true;
+            pLoginClient.Visible = false;
         }
 
         private void btnClient_Click(object sender, EventArgs e)
@@ -213,6 +213,7 @@ namespace Presentation_Layer
         private void lblRegisterAdmin_Click(object sender, EventArgs e)
         {
             pLoginAdmin.Visible = false;
+            pRegisterClient.Visible = false;
             pRegisterAdmin.Visible = true;
         }
 
@@ -223,7 +224,7 @@ namespace Presentation_Layer
             try
             {
                 //Validate the input given by the user.
-                if (Validations.IsEmptyField(txtAdminDNI.Text, password) && (Validations.IsNumber(txtDNIAdmin.Text)))
+                if (!Validations.IsEmptyField(txtAdminDNI.Text, password) && (Validations.IsNumber(txtDNIAdmin.Text)))
                 {
                     int dni = Convert.ToInt32(txtAdminDNI.Text);
                     ValidatorAdmin validateAdmin = new();
@@ -257,7 +258,17 @@ namespace Presentation_Layer
                 }
                 else
                 {
-                    MessageBox.Show("Format of the fields incorrect.");
+                    if(!Validations.IsNumber(txtAdminDNI.Text) || Validations.IsEmptyField(txtAdminDNI.Text))
+                    {
+                        MessageBox.Show("DNI only must have numbers.");
+                        txtAdminDNI.Clear();
+                        txtAdminDNI.Focus();
+                    }else if (Validations.IsEmptyField(txtPassword.Text))
+                    {
+                        MessageBox.Show("Write a password.");
+                        txtPassword.Clear();
+                        txtPassword.Focus();
+                    }
                 }
             }
             catch (Exception)
@@ -353,6 +364,11 @@ namespace Presentation_Layer
             {
                 throw new Exception("It has ocurred an error.", error);
             }
+
+        }
+
+        private void pRegisterAdmin_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

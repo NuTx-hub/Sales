@@ -289,6 +289,7 @@
             pRegisterAdmin.Name = "pRegisterAdmin";
             pRegisterAdmin.Size = new Size(305, 348);
             pRegisterAdmin.TabIndex = 4;
+            pRegisterAdmin.Paint += pRegisterAdmin_Paint;
             // 
             // label1
             // 
