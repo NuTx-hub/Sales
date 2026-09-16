@@ -8,11 +8,21 @@ using System.Windows.Forms;
 
 namespace Presentation_Layer
 {
-    public partial class frStore : Form
+    public partial class ucClientView : UserControl
     {
-        public frStore()
+        public ucClientView()
         {
             InitializeComponent();
+        }
+
+        private void ucClientView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

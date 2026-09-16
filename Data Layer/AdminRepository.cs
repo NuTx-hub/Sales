@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Data.SqlClient;
 using Entity_Layer;
-using System.Runtime.CompilerServices;
 
 namespace Data_Layer
 {
@@ -145,20 +144,22 @@ namespace Data_Layer
             try
             {
                 SqlConnection conn = new(connectionString);
-                string query = "SELECT AdminId, Name, Lastname FROM Admin WHERE DNI = @dni AND Password = @password";
+                string query = "SELECT FROM Admin WHERE DNI = @dni AND Password = @password";
                 conn.Open();
                 SqlCommand cmd = new(query, conn);
                 {
-                    cmd.Parameters.AddWithValue("@dni", Convert.ToString(DNI));
+                    cmd.Parameters.AddWithValue("@dni", DNI);
                     cmd.Parameters.AddWithValue("@password", password);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
                         int id = (int)reader.GetInt32(0);
-                        string name = reader.GetString(1);
-                        string lastname = reader.GetString(2);
-                        Admin admin = new(id, DNI, name, lastname, password);
+                        int dni = (int)reader.GetInt32(1);
+                        string name = reader.GetString(2);
+                        string lastname = reader.GetString(3);
+                        string passw = reader.GetString(4);
+                        Admin admin = new(id, dni, name, lastname, passw);
 
                         return admin;
                     }

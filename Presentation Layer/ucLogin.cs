@@ -1,25 +1,34 @@
 ﻿using Entity_Layer;
 using Logic_Layer;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Text;
 using System.Windows.Forms;
 
 namespace Presentation_Layer
 {
-    public partial class frLogin : Form
+    public partial class ucLogin : UserControl
     {
-        public frLogin()
+        public ucLogin()
         {
             InitializeComponent();
             AttachDigitOnlyRestriction(txtAdminDNI, txtClientDNI, txtDNIClient, txtDNIAdmin);
+
         }
+        private void ucLogin_Load(object sender, EventArgs e)
+        {
+            this.ClientSize = new Size(430, 435);
+            LoadPanels();
+        }
+
+        public event EventHandler LoginSucceeded;
         LogicAdmin logicAdmin = new();
         LogicClient logicClient = new();
+        frMain frmain = new();
 
         // --------------------- FUNCTIONS --------------------- // 
 
@@ -199,6 +208,7 @@ namespace Presentation_Layer
                 if (CurrentAdminSession.LogIn(dni, password))
                 {
                     frMain frStore = new();
+                    LoginSucceeded?.Invoke(this, EventArgs.Empty);
                     frStore.Show();
                     this.Hide();
                 }
@@ -240,6 +250,8 @@ namespace Presentation_Layer
                 if (CurrentClientSession.LogIn(dni))
                 {
                     frMain frStore = new();
+                    LoginSucceeded?.Invoke(this, EventArgs.Empty);
+
                     frStore.Show();
                     this.Hide();
                 }
@@ -376,14 +388,7 @@ namespace Presentation_Layer
 
         // --------------------------------------------------- //
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-            this.ClientSize = new Size(430, 435);
-            LoadPanels();
-
-        }
-
-        private void Login_Resize(object sender, EventArgs e)
+        private void ucLogin_Resize(object sender, EventArgs e)
         {
             //Rezise the panel when the form is resized
             int width = Convert.ToInt32(this.Width * 0.7);
@@ -407,7 +412,7 @@ namespace Presentation_Layer
             pSelectUser.Visible = false;
             pLoginClient.Visible = false;
             pLoginAdmin.Visible = true;
-            this.AcceptButton = btnLoginAdmin; // Set the AcceptButton to btnLoginAdmin
+            frmain.AcceptButton = btnLoginAdmin; // Set the AcceptButton to btnLoginAdmin
         }
 
         private void btnClient_Click(object sender, EventArgs e)
@@ -415,35 +420,35 @@ namespace Presentation_Layer
             pSelectUser.Visible = false;
             pLoginAdmin.Visible = false;
             pLoginClient.Visible = true;
-            this.AcceptButton = btnLoginClient; // Set the AcceptButton to btnLoginClient
+            frmain.AcceptButton = btnLoginClient; // Set the AcceptButton to btnLoginClient
         }
 
         private void btnAdminUndo_Click(object sender, EventArgs e)
         {
             pLoginAdmin.Visible = false;
             pSelectUser.Visible = true;
-            this.AcceptButton = null; // Clear the AcceptButton
+            frmain.AcceptButton = null; // Clear the AcceptButton
         }
 
         private void btnRegisterClientUndo_Click(object sender, EventArgs e)
         {
             pRegisterClient.Visible = false;
             pLoginClient.Visible = true;
-            this.AcceptButton = btnLoginClient; // Set the AcceptButton to btnLoginClient
+            frmain.AcceptButton = btnLoginClient; // Set the AcceptButton to btnLoginClient
         }
 
         private void btnRegisterAdminUndo_Click(object sender, EventArgs e)
         {
             pRegisterAdmin.Visible = false;
             pLoginAdmin.Visible = true;
-            this.AcceptButton = btnLoginAdmin; // Set the AcceptButton to btnLoginAdmin
+            frmain.AcceptButton = btnLoginAdmin; // Set the AcceptButton to btnLoginAdmin
         }
 
         private void btnClientUndo_Click(object sender, EventArgs e)
         {
             pLoginClient.Visible = false;
             pSelectUser.Visible = true;
-            this.AcceptButton = null; // Clear the AcceptButton
+            frmain.AcceptButton = null; // Clear the AcceptButton
         }
 
         private void lblRegisterClient_Click(object sender, EventArgs e)
@@ -451,8 +456,7 @@ namespace Presentation_Layer
             pLoginClient.Visible = false;
             txtClientDNI.Clear();
             pRegisterClient.Visible = true;
-            this.AcceptButton = btnRegisterClient;
-
+            frmain.AcceptButton = btnRegisterClient;
         }
 
         private void lblRegisterAdmin_Click(object sender, EventArgs e)
@@ -460,7 +464,8 @@ namespace Presentation_Layer
             pLoginAdmin.Visible = false;
             pRegisterClient.Visible = false;
             pRegisterAdmin.Visible = true;
-            this.AcceptButton = btnRegisterAdmin;
+            frmain.AcceptButton = btnRegisterAdmin;
         }
     }
 }
+
